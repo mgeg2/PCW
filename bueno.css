@@ -1,0 +1,411 @@
+@font-face  {
+  font-family: Montserrat;
+  src: url(fuentes/Montserrat.ttf) format('truetype');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* PONEMOS LA FUENTE */
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0px;
+}
+
+/* PARA QUE LOS ELEMENTOS A NO SE SUBRAYEN */
+a {
+  text-decoration: none;
+}
+
+/* PARA TODOS LOS ICONOS */
+span > i {
+  font-style: normal;
+}
+
+
+/* HEADER */
+header {
+  background-color: black;
+  width:  100%;
+}
+
+header > a > img {
+  width: 30%;
+  display: block;
+  margin: auto;
+  padding: .5em;
+}
+
+header > h1 {
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding: 0em .5em 0em .5em;
+  color: white;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+header > p {
+  color: #FF9C4C;
+  text-align: center;
+  font-weight: 800;
+  font-size: 14px;
+  margin: auto;
+  padding: 1em;
+}
+
+/* BARRA DE NAVEGACION */
+nav {
+  background-color: black;
+  margin-bottom: 40px;
+}
+
+nav > input {
+  display: none; /*para ocultar ul usar display, creo q en prac no hace falta*/
+  &:checked ~ ul {
+    max-height: 10em; 
+  }
+}
+
+nav > label {
+  cursor: pointer;
+  color: #FF9C4C;
+}
+
+.side-menu:checked + label .material-symbols-rounded {
+  transform: rotate(90deg); /* Rotar el símbolo de la hamburguesa cuando el menú está abierto */
+  transition: transform 0.3s ease; /* Agregar una transición suave */
+  content:  "close";  
+}
+
+nav > ul {
+  list-style: none;
+  max-height: 0;
+  list-style-type: disc;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /*para que oculte todo lo que sobresalga del contenedor*/
+  transition: max-height .5s;
+}
+
+nav > ul > li {
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: #FF9C4C;
+  }  
+}
+
+nav > ul > li > span {
+  color: white;
+}
+
+nav > ul > li > a {
+  display: block;
+  color: white;
+  margin-bottom: .2em;
+  &:hover {
+    color: black;
+    font-weight: 1000;
+  } 
+}
+
+/* SECCION PRINCIPAL DE INDEX*/
+.inicio {
+  display: grid;
+  gap: 1%;
+  justify-content: center;
+  place-items:  center;
+  grid-template-columns: 1fr;
+}
+
+article {
+  border-radius: 20px;
+  background-color: #FF9C4C;
+  text-align: center;
+}
+
+.pollo {
+  width: 300px;
+  height: 200px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+article > a {
+  color: black;
+  &:hover {
+    color: white;
+  }
+}
+
+article > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+article > div > span > i {
+  margin-left: .4em;
+}
+
+article > div > p {
+  margin-left: .8em;
+}
+
+/* SECCION PRINCIPAL DE BUSCAR.HTML */
+main > h3{
+  text-align: center;
+  margin-top: 50px;
+}
+.busqueda {
+  display: grid;
+  gap: 1%;
+  justify-content: center;
+  place-items:  center;
+  grid-template-columns: 1fr;
+}
+main > div {
+display: flex;
+align-items: center;
+margin-top: 130px;
+justify-content: center;
+}
+main>div>a{
+  color: black;
+}
+main>div>a>span>i{
+  font-size:30px;
+}
+main > div> p {
+  font-style: italic;
+  font-size: 17px;
+  text-align: center;
+
+}
+
+/* FIN SECCION BUSCAR.HTML */
+
+/* FORMULARIOS */
+.formulario {
+  width: 100%;
+  max-width: 500px;
+  margin: 0px auto;
+}
+
+.formulario div{
+  margin: 10px 0px;
+}
+
+.formulario input {
+  font-family: "Montserrat";
+  border-radius: 10px;
+  width: 90%;
+  height: 30px;
+  &:hover {
+    background-color: #FFE4C0;
+  }
+}
+
+.formulario select {
+  border-radius: 10px;
+  &:hover {
+    background-color: #FFE4C0;
+  }
+}
+
+.formulario button {
+  font-family: "Montserrat";
+  border-radius: 10px;
+  margin-top: 5px;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: black;
+  cursor: pointer;
+  &:hover {
+    color: #ff9c4c;
+  }
+
+}
+
+.formulario img {
+  width: 20%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.formulario textarea {
+  font-family: "Montserrat";
+  border-radius: 10px;
+  width: 90%;
+  height: 30px;
+  &:hover {
+    background-color: #FFE4C0;
+  }
+}
+
+#subirfoto {
+  display: none;
+}
+
+form > input {
+  font-family: "Montserrat";
+  background-color: #ff9c4c;
+  color: black;
+  margin-top: 10px;
+  font-weight: 1000;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+}
+
+form > div > p > button {
+  border-radius: 70px;
+  &:hover {
+    color: #ff9c4c;
+  }
+}
+/* FIN FORMULARIOS */
+
+/* FLECHA PARA VOLVER AL INICIO */
+body > a > span > i {
+  margin-top: 50px;
+  position: absolute;
+  font-size: 30px;
+  color: #ff9c4c;
+  background-color: black;
+  border-radius: 100%;
+  margin-left: 10px;
+  &:hover {
+    color: black;
+    background-color: #ff9c4c;
+  }
+}
+
+/* PIE DE PAGINA */
+
+/* PIE DE PAGINA PARA LOGIN Y REGISTRO */
+.footer-especial {
+  position: absolute;
+  margin-top: 180px;
+}
+
+.footer-especial2 {
+  position: absolute;
+  margin-top: 321px;
+}
+
+/* RESTO DE PIES DE PAGINA */
+
+footer {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  padding-bottom: 15px;
+  display: flex;
+  margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > a {
+  color: white;
+  margin: 1em;
+  text-align: left;
+  &:hover {
+    color: #ff9c4c;
+    font-weight: 1000;
+  }
+}
+
+footer > p {
+  color: white;
+  margin: 1em;
+  text-align: right;
+}
+/* FIN DE PIE DE PAGINA */
+
+/* MEDIA QUERIES PARA DIFERENTES TAMAÑOS DE PANTALLA */
+@media all and (width>= 700px){
+  .inicio {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 2%;
+  }
+
+  header > a > img {
+    width: 15%;
+    display: block;
+    margin: auto;
+    padding: .5em;
+  }
+
+  body > nav > label { 
+      display: none;
+  }
+
+  body > nav > ul {
+      max-height: 1.5em;
+      display: flex;
+      justify-content: space-evenly;
+      list-style: none;
+      margin-bottom: 40px;
+
+      > li > a{
+        padding: .2em; 
+      }      
+  }
+  .busqueda  {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 2%;
+  }
+
+  /* FOOTER ESPECIAL */
+  .footer-especial {
+  position: absolute;
+  margin-top: 260px;
+  }
+
+  .footer-especial2 {
+  position: absolute;
+  margin-top: 395px;
+  }
+}
+
+@media all and (width>= 960px){
+  .inicio {
+    grid-template-columns: repeat(3, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 3%;
+  }
+
+  header > a > img {
+    width: 12%;
+    display: block;
+    margin: auto;
+    padding: .5em;
+  }
+  /*pagina de busqueda*/
+  .busqueda {
+    grid-template-columns: repeat(3, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 3%;
+  }
+ /* fin pagina de busqueda*/
+  /* FOOTER ESPECIAL */
+  .footer-especial {
+  position: absolute;
+  margin-top: 170px;
+  }
+
+  .footer-especial2 {
+  position: absolute;
+  margin-top: 320px;
+  }
+}
+
+
+
+
+
+
