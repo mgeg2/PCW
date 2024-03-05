@@ -173,13 +173,13 @@ align-items: center;
 margin-top: 130px;
 justify-content: center;
 }
-main>div>a{
+main > div > a {
   color: black;
 }
-main>div>a>span>i{
+main> div > a > span > i {
   font-size:30px;
 }
-main > div> p {
+main > div > p {
   font-style: italic;
   font-size: 17px;
   text-align: center;
@@ -210,6 +210,8 @@ main > div> p {
 }
 
 .formulario select {
+  font-family: "Montserrat";
+  font-size: 15px;
   border-radius: 10px;
   &:hover {
     background-color: #FFE4C0;
@@ -268,6 +270,19 @@ form > div > p > button {
     color: #ff9c4c;
   }
 }
+
+form > p {
+  font-style: italic;
+  font-size: 16.5px;
+}
+
+.registrate {
+  color: #ff9c4c;
+  &:hover {
+    color: black;
+    background-color: #ff9c4c;
+  }
+}
 /* FIN FORMULARIOS */
 
 /* FLECHA PARA VOLVER AL INICIO */
@@ -283,6 +298,14 @@ body > a > span > i {
     color: black;
     background-color: #ff9c4c;
   }
+}
+
+/* PARA NUM DE PAGINA EN RESULTADOS */
+.num_pagina {
+  margin-left: 4px;
+  margin-right: 4px;
+  color: #ff9c4c;
+  font-weight: 700;
 }
 
 /* PIE DE PAGINA */
