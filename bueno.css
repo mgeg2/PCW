@@ -127,6 +127,16 @@ article {
   text-align: center;
 }
 
+article > a > img {
+  /* aplicar propiedad de transicion en elem raiz */
+  transition: transform .5s ease-in-out;
+
+  /* escalar imagen cuando me pongo encima */
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+
 .pollo {
   width: 300px;
   height: 200px;
