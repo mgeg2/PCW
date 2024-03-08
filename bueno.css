@@ -7,10 +7,11 @@ html {
   scroll-behavior: smooth;
 }
 
+
 /* PONEMOS LA FUENTE */
 body {
   font-family: "Montserrat", sans-serif;
-  margin: 0px;
+  margin: 0;
 }
 
 /* PARA QUE LOS ELEMENTOS A NO SE SUBRAYEN */
@@ -21,6 +22,12 @@ a {
 /* PARA TODOS LOS ICONOS */
 span > i {
   font-style: normal;
+}
+
+/* MARGENES */
+main {
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 
@@ -144,6 +151,11 @@ article > a > img {
   border-top-left-radius: 20px;
 }
 
+.pollo2 {
+  border-radius: 20px;
+  width: 300px;
+}
+
 article > a {
   color: black;
   &:hover {
@@ -180,7 +192,6 @@ main > h3{
 main > div {
 display: flex;
 align-items: center;
-margin-top: 130px;
 justify-content: center;
 }
 main > div > a {
@@ -194,6 +205,10 @@ main > div > p {
   font-size: 17px;
   text-align: center;
 
+}
+
+.paginas {
+  margin-top: 50px;
 }
 
 /* FIN SECCION BUSCAR.HTML */
@@ -318,6 +333,97 @@ body > a > span > i {
   font-weight: 700;
 }
 
+/* PARA ACERCA.HTML */
+.informacion-practica, .informacion-autores, .informacion-adicional {
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: justify;
+}
+
+
+/* PARA RECETA.HTML */
+.inforeceta {
+  display: grid;
+  align-items: center;
+}
+
+.inforeceta > div {
+  display: block;
+  margin-left: 4em;
+}
+
+.inforeceta > div > p > a {
+  color: black;
+  &:hover {
+    color: #ff9c4c;
+  }
+}
+
+.inforeceta > div > div {
+  display: flex;
+}
+
+.inforeceta > div > div > p {
+  padding: .5em;
+  margin-left: 3px;
+  margin-right: 3px;
+  background-color: black;
+}
+
+.inforeceta > div > div > p > a {
+  color: white;
+  &:hover {
+    color: #ff9c4c;
+  }
+}
+
+.tituloyfecha {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+main > ul {
+  text-align: justify;
+}
+
+main > ol {
+  text-align: justify;
+}
+
+main > ol > li {
+  padding: .5em;
+}
+
+.carrusel > span > i {
+  font-size: 35px;
+}
+
+
+section {
+  margin-top: 30px;
+}
+
+section > article {
+  background-color: #ff9c4c;
+  width: 100%;
+  border-radius: 20px;
+}
+
+section > article > p {
+  text-align: justify;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
+
+section > article > div > p {
+  text-align: justify;
+}
+
+
+
+
 /* PIE DE PAGINA */
 
 /* PIE DE PAGINA PARA LOGIN Y REGISTRO */
@@ -404,6 +510,17 @@ footer > p {
   .footer-especial2 {
   position: absolute;
   margin-top: 395px;
+  }
+
+  /* RECETA.HTML */
+  .inforeceta {
+  display: flex;
+  align-items: flex-start;
+  }
+
+  .inforeceta > div {
+  display: block;
+  margin-left: 2em;
   }
 }
 
