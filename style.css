@@ -1,0 +1,346 @@
+@font-face  {
+  font-family: Agrandir;
+  src: url(fuentes/Agrandir.ttf);
+  font-family: Montserrat;
+  src: url(fuentes/Montserrat.ttf);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+header > div > img {
+  width: 40%;
+  display: block;
+  margin: auto;
+  padding: .5em;
+}
+nav {
+  padding-top: 0.8em;
+  > ul > li{
+    >span{
+      color:white;
+      padding-bottom: 0.3em;
+    }
+    > a {
+      text-decoration: none;
+    }
+  }
+}
+ 
+ul {
+  list-style: none;
+}
+i{
+  font-style: normal;
+}
+header {
+  font-family: "Agrandir";
+  background-color: black;
+  width: 100%;
+}
+
+div > span > i {
+  font-style: normal;
+  margin-left: 0.4em;
+}
+
+article {
+  border-radius: 20px;
+  background-color: #ff9c4c;
+   > a {
+    color: black;
+    > img{
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+    }
+   }
+
+  text-align: center;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    >p{
+      margin-left: 0.8em;
+    }
+  }
+}
+
+
+
+.roma {
+  width: 300px;
+  height: 200px;
+}
+body {
+  margin: 0px;
+}
+
+.site-title {
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding: 0em .5em 1em .5em;
+  font-family: "Montserrat";
+  color: white;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.inicio {
+  display: grid;
+
+  gap: 1%;
+  justify-content: center;
+  place-items: center;
+  grid-template-columns: 1fr;
+}
+
+a > span > i {
+  margin-top: 50px;
+  position: absolute;
+  font-size: 30px;
+  color: white;
+  background-color: red;
+  border-radius: 100%;
+  margin-left: 355px;
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+}
+
+footer {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  padding-bottom: 15px;
+  display: flex;
+  margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > img {
+  width: 30px;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+footer > a {
+  margin: 1em;
+  color: white;
+  text-align: left;
+  &:hover {
+    background-color: #ff9c4c;
+    color: black;
+    font-weight: 900;
+  }
+}
+
+footer > p {
+  margin: 1em;
+  color: white;
+  text-align: right;
+}
+
+
+body{
+  font-family: "Montserrat"
+}
+
+body > nav {
+  background-color: black;
+  margin-bottom: 40px;
+
+  > ul {
+      max-height: 0;
+      /*display: none;*/
+      list-style-type: disc;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+
+      transition: max-height .5s;
+
+      > li > a {
+          display: block;
+          text-decoration: none;
+
+          color: white;
+          margin-bottom: .2em;
+          font-family: "Montserrat";
+
+          &:hover {
+              background-color: #ff9c4c;
+              color: black;
+              font-weight: 900;
+              
+          }  
+      }
+  }
+
+  > label {
+      cursor: pointer;
+      color: #ff9c4c; /*color de la flecha*/
+    
+  }
+
+  > input {
+      display: none;
+      &:checked ~ ul{
+          /*display: block;*/
+          max-height: 10em;
+          
+      }
+  }
+}
+.side-menu:checked + label .material-symbols-rounded {
+  transform: rotate(90deg); /* Rotar el símbolo de la hamburguesa cuando el menú está abierto */
+  transition: transform 0.3s ease; /* Agregar una transición suave */
+  content:  "close";
+  
+}
+html {
+  scroll-behavior: smooth;
+}
+
+ul{
+  >li{
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    > input[type="checkbox"]:checked + .ingrediente {
+      text-decoration: line-through;
+  }
+  }
+}
+
+
+/* FORMULARIOS */
+.formulario {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+.formulario div{
+  margin: 10px 0px;
+}
+
+.formulario input {
+  width: 90%;
+  height: 30px;
+}
+
+.formulario button {
+  font-family: "Montserrat";
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: black;
+  cursor: pointer;
+}
+/* FIN FORMULARIOS */
+
+
+a > span > i {
+    margin-top: 50px;
+    position: absolute;
+    font-size: 30px;
+    color: #ff9c4c;
+    background-color: black;
+    border-radius: 100%;
+    margin-left: 10px;
+  }
+
+
+
+@media all and (width >= 500px) {
+  header > div > img {
+    width: 15%;
+    display: block;
+    margin: auto;
+    padding: .5em;
+  }
+
+  body > nav > label { 
+      display: none;
+  }
+
+  body > nav > ul {
+      max-height: 1.5em;
+      display: flex;
+      justify-content: space-evenly;
+      list-style: none;
+      margin-bottom: 40px;
+
+      > li > a{
+        padding: .2em; 
+      }   
+    
+  }
+}
+@media all and (width>= 700px){
+  .inicio {
+
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
+
+
+  }
+}
+@media all and (width>= 960px){
+  .inicio {
+
+    grid-template-columns: repeat(3, 1fr); /* Dos columnas en pantallas más grandes */
+
+
+  }
+}
+
+
+
+/* reglas mediaquery */ 
+/*
+@media all and (width >= 600px) {
+  body > nav > label {
+    display: none;
+  }
+
+  body > nav > ul {
+    max-height: 1.5em;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  body > main > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  body > main > div > article {
+    display: inline-block;
+
+    width: calc( 50% - 1em );
+    margin: .5em;
+  }
+}
+*/
+
+/*para q se puedan ver 3 x fila hago otro media query*/
+
+/*
+@media all and (width >= 700px){
+  body > main > div > article {
+    width: calc( 33% - 1em );
+  }
+}
+*/
+
+
+

@@ -334,7 +334,7 @@ body > a > span > i {
 }
 
 /* PARA ACERCA.HTML */
-.informacion-practica, .informacion-autores, .informacion-adicional {
+.informacion-practica, .informacion-autores, .informacion-adicional,.autoevaluacion {
   margin-left: 25px;
   margin-right: 25px;
   text-align: justify;
@@ -405,7 +405,7 @@ section {
 }
 
 section > article {
-  background-color: #ff9c4c;
+  background-color: #FFB981;
   width: 100%;
   border-radius: 20px;
 }
@@ -416,10 +416,23 @@ section > article > p {
   padding-right: 1em;
   padding-bottom: 1em;
 }
+section > article > h5 {
+  text-align: justify;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
 
 section > article > div > p {
   text-align: justify;
+  margin: 16px;
 }
+
+.comentario{
+  display: flex;
+  justify-content: space-between;
+}
+
 
 
 
