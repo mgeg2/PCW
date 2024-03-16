@@ -15,7 +15,7 @@ function pedirRecetas(){
 			r.FILAS.forEach(function(e,idx){
 			
 				html +=`<article classs="index">
-							<a href="receta.html">
+							<a href="receta.html?nombre=${encodeURIComponent(e.nombre)}">
 							<img src="./fotos/${e.imagen}" alt="paisaje4" class="pollo">
 							<h3 title="pollo-tikka-masala">${e.nombre}</h3>
 							</a>
