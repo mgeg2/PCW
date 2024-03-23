@@ -13,9 +13,24 @@ function pedirRecetas(){
 			let html ='';
 
 			r.FILAS.forEach(function(e,idx){
-			
+				let estrellas;
+
+				switch ( parseInt(e.dificultad)) {
+					case 0:
+						estrellas = `<span class="material-symbols-rounded"><i>star</i></span>`;
+						break
+					case 1:
+						estrellas = `<span class="material-symbols-rounded"><i>star</i><i>star</i></span>`;
+						break;
+					case 2:
+						estrellas = `<span class="material-symbols-rounded"><i>star</i><i>star</i><i>star</i></span>`;
+						break;
+					default:
+						estrellas = `<p>Opción por defecto</p>`;
+				}
+
 				html +=`<article classs="index">
-							<a href="receta.html?nombre=${encodeURIComponent(e.nombre)}">
+							<a href="receta.html?ID=${e.id}">
 							<img src="./fotos/${e.imagen}" alt="paisaje4" class="pollo">
 							<h3 title="pollo-tikka-masala">${e.nombre}</h3>
 							</a>
@@ -23,18 +38,7 @@ function pedirRecetas(){
 							<span class="material-symbols-rounded"><i>person</i></span>
 							<p>${e.personas}</p>
 							<p>|</p>
-							${(() => {
-								switch (e.dificultad) {
-									case 0:
-										return `<span class="material-symbols-rounded"><i>star</i></span>`;
-									case 1:
-										return `<span class="material-symbols-rounded"><i>star</i><i>star</i></span>`;
-									case 2:
-										return `<span class="material-symbols-rounded"><i>star</i><i>star</i><i>star</i></span>`;
-									default:
-										return `<p>Opción por defecto</p>`;
-								}
-							})()}
+							${estrellas}
 							<p>|</p>
 							<p>${e.tiempo} mins</p>
 							<span class="material-symbols-rounded"><i>timer</i></span>

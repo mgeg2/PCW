@@ -14,6 +14,21 @@ function receta() {
         if (r.RESULTADO =='OK') { 
             let html='';
            r.FILAS.forEach(function(receta,idx){
+            let estrellas;
+
+				switch ( parseInt(receta.dificultad)) {
+					case 0:
+						estrellas = `<span class="material-symbols-rounded"><i>star</i></span>`;
+						break
+					case 1:
+						estrellas = `<span class="material-symbols-rounded"><i>star</i><i>star</i></span>`;
+						break;
+					case 2:
+						estrellas = `<span class="material-symbols-rounded"><i>star</i><i>star</i><i>star</i></span>`;
+						break;
+					default:
+						estrellas = `<p>Opción por defecto</p>`;
+				}
             var fechaOriginal =receta.fechaCreacion ;
 
             // Dividir la fecha en día, mes y año
@@ -36,24 +51,18 @@ function receta() {
                     <p>Raciones: 8</p>
                     <p>Tiempo: 90 min</p>
                     <p>Dificultad:
-                    ${(() => {
-                        switch (receta.dificultad) {
-                            case 0:
-                                return `Baja`;
-                            case 1:
-                                return `Media`;
-                            case 2:
-                                return `Alta`;
-                            default:
-                                return `<p>Opción por defecto</p>`;
-                        }
-                    })()}
                     </p>
-                   
+                    ${estrellas}
+                    <div id="etiqs"></div> <!-- Llamando a la función etiquetas aquí -->
+                    
                 </div>
             </div>`
            });
             document.querySelector('#receta-container').innerHTML=html;
+            
+            ingredientes();
+            etiquetas();
+
         }
     }
         xhr.send();
@@ -84,7 +93,32 @@ function ingredientes() {
             r.FILAS.forEach(function(ingrediente,idx){
                 html +=`<li>${ingrediente.texto}</li>`;
             });
-            document.querySelector('#receta-container').innerHTML+=html;
+            document.querySelector('#ing').innerHTML+=html;
+        }
+    }
+    xhr.send();
+
+}
+function etiquetas() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ID = urlParams.get('ID');
+
+    let url = 'api/recetas/' + ID +'/etiquetas';
+	let xhr = new XMLHttpRequest();
+    
+    xhr.open('GET',url,true);
+    xhr.responseType = 'json';
+    xhr.onload = function () {
+        let r = xhr.response;
+        console.log(r);
+        if(r.RESULTADO== 'OK'){
+            let html ='';
+            r.FILAS.forEach(function(etiqueta,idx){
+                html +=`<p><a href=index.html>${etiqueta.nombre}</a></p>`;
+                
+            });
+
+            document.querySelector('#etiqs').innerHTML+=html;
         }
     }
     xhr.send();

@@ -162,6 +162,13 @@ article > a {
     color: white;
   }
 }
+article > a > h3{
+  text-overflow: ellipsis;
+  white-space:  nowrap;
+  overflow: hidden;
+  width: 300px;
+
+}
 
 article > div {
   display: flex;
@@ -171,6 +178,7 @@ article > div {
 
 article > div > span > i {
   margin-left: .4em;
+  font-size: 20px;
 }
 
 article > div > p {
@@ -376,13 +384,21 @@ body > a > span > i {
     color: #ff9c4c;
   }
 }
+#receta-container{
+  display: grid;
+  align-items: center;
 
+}
 .tituloyfecha {
   display: grid;
   justify-content: center;
   align-items: center;
 }
-
+.tituloyfecha >p {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 main > ul {
   text-align: justify;
 }
