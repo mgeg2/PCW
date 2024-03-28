@@ -384,11 +384,7 @@ body > a > span > i {
     color: #ff9c4c;
   }
 }
-#receta-container{
-  display: grid;
-  align-items: center;
 
-}
 .tituloyfecha {
   display: grid;
   justify-content: center;
