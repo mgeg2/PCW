@@ -1,0 +1,21 @@
+* {
+	box-sizing: border-box;
+}
+
+/* para que salga un canvas al lado del otro, porque no estan dentro de un contenedor */
+section { 
+	display: inline-block;
+	width: 400px;
+	margin: .5em;
+
+	text-align: center;
+	vertical-align: top;
+}
+
+canvas {
+	border: 1px solid #000;
+}
+
+#oculto {
+	display: none;
+}

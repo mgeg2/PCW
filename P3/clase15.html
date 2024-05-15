@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0" />
+    <link rel="stylesheet" href="clase15.css">
+    <script src="clase15.js"></script>
+    <title>Puzzle</title>
+</head>
+
+<body>
+    <h1>Ejemplos de canvas</h1>
+    <section>
+        <h2>Canvas 1</h2>
+        <p>
+            Pos.: <span id='pos'></span>
+        </p>
+        <p>
+            Clic: <span id='clic'></span> 
+        </p>
+        
+        <canvas id="cv1"></canvas> 
+        <footer>
+            <button onclick="cargarImagen();">Cargar imagen</button>
+            <button onclick="divisiones();">Divisiones</button>
+        </footer>
+    </section>
+    
+    <section>
+        <h2>Canvas 2</h2>
+        <p>-</p>
+        <p>-</p> 
+
+        <canvas id="cv2"></canvas>
+    </section>
+
+    <canvas id="oculto"></canvas>
+
+    <script>
+        prepararCanvas();
+        prepararEventosCanvas();
+        // si pongo aqui el divisiones() entonces se hacen las divisiones al cargar la pagina;
+    </script>   
+</body>
+
+</html>
