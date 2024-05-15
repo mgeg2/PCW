@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form  class="formulario"  id="formularioComentario" onsubmit="dejarComentario(event)">
+        <div>
+            <p><label for="titulo">Título:</label><br>
+                <input type="text" name="titulo" class="estiloform" id="titulo" required>
+                <!-- <span id="mensajePassword" style="color: red;"></span><br> -->
+            </p>
+        </div>
+        <div>
+            <p><label for="texto">Escribe aqui tu comentario</label><br>
+                <input type="textarea" name="texto" class="estiloform" id="texto" required>
+                <!-- <span id="mensajePassword" style="color: red;"></span><br> -->
+            </p>
+        </div>
+        <input type="submit" value="Dejar comentario" >
+    </form>
+</body>
+</html>

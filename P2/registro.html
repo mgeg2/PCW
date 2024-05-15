@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0" >
+    <link rel="stylesheet" href="bueno.css">
+    <script src="menu.js"></script>
+    <script src="registro.js"></script>
+    <script src="mmodal.js"></script>
+    <title>Spicy Bites</title>
+</head>
+
+<body data-pagina="registro">
+
+
+    <!-- Si el usuario esta logeado e intenta acceder a registro-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Comprobar si el usuario está logueado
+            let datosUsu = sessionStorage.getItem('datosUsu');
+            if (datosUsu) {
+                // Usuario no está logueado, redirigir a index.html
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+
+
+    <header>
+        <a id="inicio" class="smooth-scroll"></a>
+        <a href="index.html"><img src="hotbites.png" alt="logotipo" class="img"></a>
+        <h1>Spicy Bites</h1>
+        <p>Recetas para los más valientes</p>
+    </header>
+
+    <nav class="nav">
+        <input type="checkbox" id="side-menu" class="side-menu">
+        <label for="side-menu">
+            <span class="material-symbols-rounded">
+                chevron_right
+            </span>
+        </label>
+        <ul id="menu"></ul>
+    </nav>
+
+    <main>
+        <form action="index.html" class="formulario" onsubmit="hacerRegistro(event)">
+
+            <div>
+                <p><label>Nombre de usuario:</label><br>
+                    <input type="text" name="usu" class="estiloform" pattern="^(?![0-9])[A-Za-z]{4,20}\S*$"
+                    title="El nombre de usuario no cumple con los requisitos"  id ="usu" placeholder="Ingresa tu usuario" onblur="comprobarLogin(this);" required>
+                    <br><span id="mensajeLogin"></span>
+
+                </p>
+            </div>
+
+            <div>
+                <p><label>Email:</label><br>
+                    <input type="email" name="email" class="estiloform"  id="email" required>
+                </p>
+            </div>
+            <div>
+                <p><label>Contraseña:</label><br>
+                    <input type="password" name="pwd" class="estiloform" pattern="[a-zA-Z0-9_\-\.]{4,20}"
+                        title="La contraseña no cumple con los requisitos" id="pwd" required>
+                </p>
+            </div>
+            <div>
+                <p><label>Repite la contraseña:</label><br>
+                    <input type="password" name="pwd2" class="estiloform" id="pwd2" onblur="comprobarPassword(event)">
+                    <br><span id="mensajeError"></span>
+                </p>
+            </div>
+            <input type="submit" value="Registrarse">
+        </form>
+    </main>
+
+    <a href="#inicio">
+        <span class="material-symbols-rounded">
+            <i>expand_less</i>
+        </span>
+    </a>
+
+    <footer class="footer-especial">
+        <a href="acerca.html">Sobre nosotros</a>
+        <p>&copy; Spicy Bites, <time>2024</time></p>
+    </footer>
+
+    <script>
+        mostrarMenu();
+    </script>
+</body>
+
+</html>

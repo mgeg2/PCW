@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0">
+    <link rel="stylesheet" href="bueno.css">
+    <script src="menu.js"></script>
+    <script src="nueva.js"></script>
+    <script src="mmodal.js"></script>
+    <title>Spicy Bites</title>
+</head>
+
+<body data-pagina="nueva">
+
+    <!-- Si se intenta acceder a nueva sin estar logeado-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Comprobar si el usuario está logueado
+            let datosUsu = sessionStorage.getItem('datosUsu');
+            if (!datosUsu) {
+                // Usuario no está logueado, redirigir a index.html
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+
+
+    <header>
+        <a id="inicio" class="smooth-scroll"></a>
+        <a href="index.html"><img src="hotbites.png" alt="logotipo" class="img"></a>
+        <h1>Spicy Bites</h1>
+        <p>Recetas para los más valientes</p>
+    </header>
+
+    <nav class="nav">
+        <input type="checkbox" id="side-menu" class="side-menu">
+        <label for="side-menu">
+            <span class="material-symbols-rounded">
+                chevron_right
+            </span>
+        </label>
+        <ul id="menu"></ul>
+    </nav>
+
+    <main>
+        <div>
+
+            <form onsubmit="crearReceta(event);" class="formulario">
+                <div>
+                    <label>Nombre:</label>
+                    <input placeholder="Nombre de la receta" type="text" name="nombre" id="nombre" required> <!-- poner nombres en name que dice el enunciado -->
+                </div>
+
+                <div>
+                    <label>Elaboracion:</label>
+                    <textarea placeholder="Separa los pasos de la receta por cambio de línea" name="elaboracion" required></textarea>
+                </div>
+                <div>
+                    <label>Tiempo:</label>
+                    <input placeholder="Tiempo de elaboración en minutos" type="number" name="tiempo" min="0" step="1" required>
+
+                </div>
+
+                <div>
+                    <label>Personas:</label>
+                    <input placeholder="Número de raciones" type="number" name="personas" min="0" step="1" required>
+
+                </div>
+
+                <div>
+                    <label>Dificultad:</label>
+                    <input placeholder="Elige un número del 0 al 2" type="number" name="dificultad" min="0" step="1" max="2" required>
+                </div>
+
+                <div class="nueva-receta">
+                <h2>Ingredientes</h2>
+                <ul id="ingredientes"></ul>
+                <div>
+                    <label>Ingrediente:</label>
+                    <input type="text" id="ingr">
+                    <button type="button" onclick="anyadirIngrediente();">+</button>
+                </div>
+                </div>
+
+                <div class="nueva-receta">
+                <h2>Etiquetas</h2>
+                <ul id="etiquetas"></ul>
+                <div>
+                    <label>Etiqueta:</label>
+                    <input type="text" id="etiq" list="sugerencias" onclick="anyadirEtiqueta();">
+                    <datalist id="sugerencias"></datalist>
+                    <button type="button" onclick="agregar();">+</button>
+                </div>
+                </div>
+
+                
+
+                <div>
+                    <!-- Aquí se agregarán las fichas de fotos dinámicamente -->
+                    <div id="fotos-subidas"></div>
+                    <div>
+                        <button type="button" id="agregar-foto" onclick="anyadirFoto(event);">Agregar Foto</button>
+                    </div>
+                </div>
+
+                <div>
+                    <input value="Subir receta" type="submit" id="enviar">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <a href="#inicio">
+        <span class="material-symbols-rounded">
+            <i>expand_less</i>
+        </span>
+    </a>
+
+    <footer>
+        <a href="acerca.html">Sobre nosotros</a>
+        <p>&copy; Spicy Bites, <time>2024</time></p>
+    </footer>
+
+    <script>
+        mostrarMenu();
+    </script>
+</body>
+
+</html>

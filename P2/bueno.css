@@ -1,0 +1,698 @@
+@font-face  {
+  font-family: Montserrat;
+  src: url(fuentes/Montserrat.ttf) format('truetype');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* PONEMOS LA FUENTE */
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+/* PARA QUE LOS ELEMENTOS A NO SE SUBRAYEN */
+a {
+  text-decoration: none;
+}
+
+/* PARA TODOS LOS ICONOS */
+span > i {
+  font-style: normal;
+}
+
+/* MARGENES */
+main {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+
+/* HEADER */
+header {
+  background-color: black;
+  width:  100%;
+}
+
+header > a > img {
+  width: 30%;
+  display: block;
+  margin: auto;
+  padding: .5em;
+}
+
+header > h1 {
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding: 0em .5em 0em .5em;
+  color: white;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+header > p {
+  color: #FF9C4C;
+  text-align: center;
+  font-weight: 800;
+  font-size: 14px;
+  margin: auto;
+  padding: 1em;
+}
+
+/* BARRA DE NAVEGACION */
+nav {
+  background-color: black;
+  margin-bottom: 40px;
+}
+
+nav > input {
+  display: none; /*para ocultar ul usar display, creo q en prac no hace falta*/
+  &:checked ~ ul {
+    max-height: 10em; 
+  }
+}
+
+nav > label {
+  cursor: pointer;
+  color: #FF9C4C;
+}
+
+.side-menu:checked + label .material-symbols-rounded {
+  transform: rotate(90deg); /* Rotar el símbolo de la hamburguesa cuando el menú está abierto */
+  transition: transform 0.3s ease; /* Agregar una transición suave */
+  content:  "close";  
+}
+
+nav > ul {
+  list-style: none;
+  max-height: 0;
+  list-style-type: disc;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /*para que oculte todo lo que sobresalga del contenedor*/
+  transition: max-height .5s;
+}
+
+nav > ul > li {
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: #FF9C4C;
+  }  
+}
+
+nav > ul > li > span {
+  color: white;
+}
+
+nav > ul > li > a {
+  display: block;
+  color: white;
+  margin-bottom: .2em;
+  &:hover {
+    color: black;
+    font-weight: 1000;
+  } 
+}
+
+/* SECCION PRINCIPAL DE INDEX*/
+.inicio {
+  display: grid;
+  gap: 1%;
+  justify-content: center;
+  place-items:  center;
+  grid-template-columns: 1fr;
+}
+
+article {
+  border-radius: 20px;
+  background-color: #FF9C4C;
+  text-align: center;
+}
+
+article > a > img {
+  /* aplicar propiedad de transicion en elem raiz */
+  transition: transform .5s ease-in-out;
+
+  /* escalar imagen cuando me pongo encima */
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+
+.pollo {
+  width: 300px;
+  height: 200px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.pollo2 {
+  border-radius: 20px;
+  width: 300px;
+}
+
+article > a {
+  color: black;
+  &:hover {
+    color: white;
+  }
+}
+article > a > h3{
+  text-overflow: ellipsis;
+  white-space:  nowrap;
+  overflow: hidden;
+  width: 300px;
+
+}
+
+article > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+article > div > span > i {
+  margin-left: .4em;
+  font-size: 20px;
+}
+
+article > div > p {
+  margin-left: .8em;
+}
+
+/* SECCION PRINCIPAL DE BUSCAR.HTML */
+main > h3{
+  text-align: center;
+  margin-top: 50px;
+}
+.busqueda {
+  display: grid;
+  gap: 1%;
+  justify-content: center;
+  place-items:  center;
+  grid-template-columns: 1fr;
+}
+main > div {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+main > div > a {
+  color: black;
+}
+main> div > a > span > i {
+  font-size:30px;
+}
+main > div > p {
+  font-style: italic;
+  font-size: 17px;
+  text-align: center;
+
+}
+
+.paginas {
+  margin-top: 50px;
+}
+
+/* FIN SECCION BUSCAR.HTML */
+
+/* FORMULARIOS */
+.formulario {
+  width: 100%;
+  max-width: 500px;
+  margin: 0px auto;
+}
+
+.formulario div{
+  margin: 10px 0px;
+}
+
+.formulario input {
+  font-family: "Montserrat";
+  border-width: thin;
+  border-radius: 10px;
+  width: 90%;
+  height: 30px;
+  &:hover {
+    background-color: #FFE4C0;
+  }
+}
+
+.formulario select {
+  font-family: "Montserrat";
+  font-size: 15px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #FFE4C0;
+  }
+}
+
+.formulario button {
+  font-family: "Montserrat";
+  border-radius: 10px;
+  margin-top: 5px;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: black;
+  cursor: pointer;
+  &:hover {
+    color: #ff9c4c;
+  }
+
+}
+
+.formulario img {
+  width: 20%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.formulario textarea {
+  font-family: "Montserrat";
+  border-radius: 10px;
+  width: 90%;
+  height: 30px;
+  &:hover {
+    background-color: #FFE4C0;
+  }
+}
+
+#subirfoto {
+  display: none;
+}
+
+.foto input[type="file"] {
+    display: none;
+}
+
+
+form > input {
+  font-family: "Montserrat";
+  background-color: #ff9c4c;
+  color: black;
+  margin-top: 10px;
+  font-weight: 1000;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+}
+
+#enviar {
+  font-family: "Montserrat";
+  background-color: #ff9c4c;
+  color: black;
+  margin-top: 10px;
+  font-weight: 1000;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  &:hover {
+    background-color: #FFE4C0;
+  }
+}
+
+form > div > p > button {
+  border-radius: 70px;
+  &:hover {
+    color: #ff9c4c;
+  }
+}
+
+form > p {
+  font-style: italic;
+  font-size: 16.5px;
+}
+
+.registrate {
+  color: #ff9c4c;
+  &:hover {
+    color: black;
+    background-color: #ff9c4c;
+  }
+}
+/* FIN FORMULARIOS */
+
+/* FLECHA PARA VOLVER AL INICIO */
+body > a > span > i {
+  margin-top: 50px;
+  position: absolute;
+  font-size: 30px;
+  color: #ff9c4c;
+  background-color: black;
+  border-radius: 100%;
+  margin-left: 10px;
+  &:hover {
+    color: black;
+    background-color: #ff9c4c;
+  }
+}
+
+/* PARA NUM DE PAGINA EN RESULTADOS */
+.num_pagina {
+  margin-left: 4px;
+  margin-right: 4px;
+  color: #ff9c4c;
+  font-weight: 700;
+}
+
+/* PARA ACERCA.HTML */
+.informacion-practica, .informacion-autores, .informacion-adicional,.autoevaluacion {
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: justify;
+}
+
+
+/* PARA RECETA.HTML */
+.inforeceta {
+  display: grid;
+  align-items: center;
+}
+
+.inforeceta > div {
+  display: block;
+  margin-left: 4em;
+}
+
+.inforeceta > div > p > a {
+  color: black;
+  &:hover {
+    color: #ff9c4c;
+  }
+}
+
+.inforeceta > div > div {
+  display: flex;
+}
+
+.inforeceta > div > div > p {
+  padding: .5em;
+  margin-left: 3px;
+  margin-right: 3px;
+  background-color: black;
+}
+
+.inforeceta > div > div > p > a {
+  color: white;
+  &:hover {
+    color: #ff9c4c;
+  }
+}
+
+.tituloyfecha {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.tituloyfecha >p {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+main > ul {
+  text-align: justify;
+}
+
+main > ol {
+  text-align: justify;
+}
+
+main > ol > li {
+  padding: .5em;
+}
+
+.carrusel > span > i {
+  font-size: 35px;
+}
+
+
+section {
+  margin-top: 30px;
+}
+
+section > article {
+  background-color: #FFB981;
+  width: 100%;
+  border-radius: 20px;
+}
+
+section > article > p {
+  text-align: justify;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
+section > article > h5 {
+  text-align: justify;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
+
+section > article > div > p {
+  text-align: justify;
+  margin: 16px;
+}
+
+.comentario{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+/* PIE DE PAGINA */
+
+/* PIE DE PAGINA PARA LOGIN Y REGISTRO */
+.footer-especial {
+  position: relative;
+  margin-top: 180px;
+}
+
+.footer-especial2 {
+  position: ;
+  margin-top: 321px;
+}
+
+/* RESTO DE PIES DE PAGINA */
+
+footer {
+  position: relative;
+  background-color: black;
+  width: 100%;
+  padding-bottom: 15px;
+  display: flex;
+  margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > a {
+  color: white;
+  margin: 1em;
+  text-align: left;
+  &:hover {
+    color: #ff9c4c;
+    font-weight: 1000;
+  }
+}
+
+footer > p {
+  color: white;
+  margin: 1em;
+  text-align: right;
+}
+/* FIN DE PIE DE PAGINA */
+
+#carrusel {
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#fotos {
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#fotos img {
+  width: 300px;
+  height: 200px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+#fotos p{
+  word-wrap: break-word;
+  text-align: center;
+}
+
+#botones-carrusel {
+  position: absolute;
+  top: 105%;
+  left: 5%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#botones-carrusel button {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: black;
+  background-color: #ff9c4c;
+  border: none;
+  margin-left: .5em;
+  margin-right: .5em;
+  font-family: monospace;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+
+
+/*CARRUSEL DE FOTOS*/
+
+
+/* MENSAJE MODAL */
+dialog{
+  border: none;
+  border-radius: 20px;
+}
+
+dialog::backdrop{
+  background-color: #0007;
+  backdrop-filter: blur(7px);
+}
+
+dialog > div > button{
+  font-family: "Montserrat";
+  border-radius: 10px;
+  margin-top: 5px;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: black;
+  cursor: pointer;
+  &:hover {
+    color: #ff9c4c;
+  }
+}
+
+/**/
+
+
+
+
+
+/*FIN CARRUSEL*/
+
+/* MEDIA QUERIES PARA DIFERENTES TAMAÑOS DE PANTALLA */
+@media all and (width>= 700px){
+  .inicio {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 2%;
+  }
+
+  header > a > img {
+    width: 15%;
+    display: block;
+    margin: auto;
+    padding: .5em;
+  }
+
+  body > nav > label { 
+      display: none;
+  }
+
+  body > nav > ul {
+      max-height: 1.5em;
+      display: flex;
+      justify-content: space-evenly;
+      list-style: none;
+      margin-bottom: 40px;
+
+      > li > a{
+        padding: .2em; 
+      }      
+  }
+  .busqueda  {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 2%;
+  }
+
+  /* FOOTER ESPECIAL */
+  .footer-especial {
+  position: absolute;
+  margin-top: 260px;
+  }
+
+  .footer-especial2 {
+  position: absolute;
+  margin-top: 395px;
+  }
+
+  /* RECETA.HTML */
+  .inforeceta {
+  display: flex;
+  align-items: flex-start;
+  }
+
+  .inforeceta > div {
+  display: block;
+  margin-left: 2em;
+  }
+}
+
+@media all and (width>= 960px){
+  .inicio {
+    grid-template-columns: repeat(3, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 3%;
+  }
+
+  header > a > img {
+    width: 12%;
+    display: block;
+    margin: auto;
+    padding: .5em;
+  }
+  /*pagina de busqueda*/
+  .busqueda {
+    grid-template-columns: repeat(3, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 3%;
+  }
+ /* fin pagina de busqueda*/
+  /* FOOTER ESPECIAL */
+  .footer-especial {
+  position: absolute;
+  margin-top: 170px;
+  }
+
+  .footer-especial2 {
+  position: absolute;
+  margin-top: 320px;
+  }
+}
+
+
+
+
+
+

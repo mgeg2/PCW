@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0" >
+    <link rel="stylesheet" href="bueno.css">
+    <title>Spicy Bites</title>
+    <script src="menu.js"></script>
+    <script src="buscar.js"></script>
+</head>
+
+<body data-pagina="buscar">
+    <header>
+        <a id="inicio" class="smooth-scroll"></a>
+        <a href="index.html"><img src="hotbites.png" alt="logotipo" class="img"></a>
+        <h1>Spicy Bites</h1>
+        <p>Recetas para los más valientes</p>
+    </header>
+
+    <nav class="nav">
+        <input type="checkbox" id="side-menu" class="side-menu">
+        <label for="side-menu">
+            <span class="material-symbols-rounded">
+                chevron_right
+            </span>
+        </label>
+        <ul id="menu"></ul>
+    </nav>
+
+   <main> 
+    <div class="form-busqueda">
+        <form class="formulario" onsubmit="buscarRecetas()">
+            <div>
+                <label for="autor">Autor:</label>
+                <input type="text" name="a" id="autor">
+            </div>
+            <div> 
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="t" id="nombre">
+            </div>
+
+            <div> 
+                <label for="ingredientes">Ingredientes:</label>
+                <input type="text" name="i" id="ingredientes">
+            </div>
+            <div> 
+                <label for="etiqueta">Etiqueta:</label>
+                <input type="text" name="e" id="etiqueta">
+            </div>
+            <div> 
+                <label for="dificultad">Dificultad:</label><br>
+                <select name="d" id="dificultad">
+                    <option value="">Seleccione una</option>
+                    <option value="baja">Baja</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
+                </select>
+            </div>
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+    <h3>Resultados de búsqueda:</h3>
+    <div class="inicio" id="lista">
+            <script>
+                buscarRecetas();
+            </script>
+    </div>
+    <button onclick="aumentaRecetas();">
+        <span class="material-symbols-rounded" >
+        <i>add</i>
+        </span>
+    </button>
+    </main>
+    
+    <a href="#inicio"><span class="material-symbols-rounded">
+    <i>expand_less</i>
+    </span></a>
+    <footer>
+        <a href="acerca.html">Sobre nosotros</a>
+        <p>&copy; Spicy Bites, <time>2024</time></p>
+    </footer>
+
+    <script>
+        mostrarMenu();
+    </script>
+</body>
+</html>
