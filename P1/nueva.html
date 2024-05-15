@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0" />
+    <link rel="stylesheet" href="bueno.css">
+    <title>Spicy Bites</title>
+</head>
+
+<body>
+    <header>
+        <a id="inicio" class="smooth-scroll"></a>
+        <a href="index.html"><img src="hotbites.png" alt="logotipo" class="img"></a>
+        <h1>Spicy Bites</h1>
+        <p>Recetas para los más valientes</p>
+    </header>
+    
+    <nav class="nav">
+        <input type="checkbox" id="side-menu" class="side-menu">
+        <label for="side-menu"><span class="material-symbols-rounded">
+                chevron_right
+            </span></label>
+        <ul>
+            <li>
+                <span class="material-symbols-rounded"><i>home</i></span>
+                <a href="index.html">Index</a>
+                
+            </li>
+            <li>
+                <span class="material-symbols-rounded"><i>search</i></span>
+                <a href="buscar.html">Buscar</a>
+            </li>
+            <li>
+                <span class="material-symbols-rounded"><i>add</i></span>
+                <a href="nueva.html">Nueva receta</a>
+            </li>
+            <li>
+                <span class="material-symbols-rounded"><i>how_to_reg</i></span>
+                <a href="registro.html">Registrarse</a>
+            </li>
+            <li>
+                <span class="material-symbols-rounded"><i>login</i></span>
+                <a href="login.html">Login</a>
+            </li>
+            <li>
+                <span class="material-symbols-rounded"><i>logout</i></span>
+                <a href="index.html">Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <form action="index.html" class="formulario">
+
+        <div>
+            <label>Nombre de la receta: </label>
+            <input type="text" name="nombre_receta" required maxlength="100">
+        </div>
+
+        <div>
+            <label>Tiempo de elaboración: </label>
+            <input type="time" name="tiempo_receta" required min="00:01">
+        </div>
+
+        <div>
+            <label>Número de raciones: </label>
+            <input type="number" name="num_raciones" required min="1" max="10">
+        </div>
+
+        <div>
+            <label>Dificultad: </label>
+            <br>
+            <select name="dificultad_receta">
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Ingredientes necesarios:</label><br>
+            <input type="text" id="ingredientes" name="ingredientes" required>
+            <button type="button">Agregar ingrediente </button><br>
+            <ul id="lista-ingredientes"></ul><br>
+        </div>
+
+        <div>
+            <label>Ingredientes añadidos:</label>
+            <p>Arroz <button type="button">x</button></p>
+            <p>Pollo <button type="button">x</button></p>
+        </div>
+            
+        <div>
+            <label for="etiquetas">Etiquetas:</label><br>
+            <input type="text" id="etiquetas" name="etiquetas" list="lista-etiquetas">
+            <datalist id="lista-etiquetas">
+                <option value="Asiática">
+                <option value="Picante">
+                <option value="Mexicana">
+                <option value="Plato principal">
+                <option value="Entrante">
+            </datalist>
+            <button type="button">Añadir</button><br>
+            <ul id="lista-etiquetas-agregadas"></ul><br>
+        </div>
+
+        <div>
+            <label>Etiquetas añadidas:</label>
+            <p>Asiática <button type="button">x</button></p>
+            <p>Entrante <button type="button">x</button></p>
+        </div>
+
+        <div>
+            <label>Descripción de la receta:</label><br>
+            <textarea required placeholder="Escribe la elaboración de la receta..."></textarea>
+        </div>
+
+        <div>
+            <label>Imágenes:</label><br>
+            <input type="file" id="subirfoto" accept="image/*">
+            <label for="subirfoto">
+                <img src="imagen.png" alt="No hay foto">
+            </label>
+            <textarea maxlength="200" placeholder="Descripción de la foto"></textarea>
+            <label for="subirfoto">
+                <button type="button">Seleccionar foto</button>
+            </label>
+            <button type="button">Eliminar foto</button>
+        </div>
+
+        <input type="submit" value="Subir receta">
+        <input type="reset" value="Limpiar formulario">
+
+            
+        </form>
+    </main>
+    <a href="#inicio"><span class="material-symbols-rounded">
+    <i>expand_less</i>
+    </span></a>
+    <footer>
+        <a href="acerca.html">Sobre nosotros</a>
+        <p>&copy; Spicy Bites, <time>2024</time></p>
+    </footer>
+</body>
+
+</html>
