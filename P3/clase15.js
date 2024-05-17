@@ -61,6 +61,9 @@ function cargarImagen() {
                 }
             }
 
+            let buttons = document.querySelectorAll('input[name="5x5"], button[onclick="activaimagen()"]');
+            buttons.forEach(button => button.disabled = false);
+        
             img.src = URL.createObjectURL(fichero); // asignamos a la imagen el archivo leído
         }
     };
@@ -104,7 +107,7 @@ function prepararEventosCanvas() {
     cv.onmousemove = function (evt) {
         let x = evt.offsetX,
             y = evt.offsetY,
-            nDivs = 3, // sacar num de divisiones como constante en la práctica se coge del html 
+            nDivs = currentDivisions || 3, // sacar num de divisiones como constante en la práctica se coge del html 
             ancho = cv.width / nDivs,
             fila = Math.floor(y / ancho),
             col = Math.floor(x / ancho);
@@ -118,7 +121,7 @@ function prepararEventosCanvas() {
     cv.onclick = function (evt) {
         let x = evt.offsetX,
             y = evt.offsetY,
-            nDivs = 3, // sacar num de divisiones como constante en la práctica se coge del html 
+            nDivs = currentDivisions || 3, // sacar num de divisiones como constante en la práctica se coge del html 
             ancho = cv.width / nDivs,
             fila = Math.floor(y / ancho),
             col = Math.floor(x / ancho);
@@ -137,7 +140,7 @@ function copiar(fila, col) {
         ctx3 = cv3.getContext('2d'),
         cv2 = document.querySelector('#cv2'),
         ctx2 = cv2.getContext('2d'),
-        nDivs = 3, // poner como constante mejor
+        nDivs = currentDivisions || 3, // poner como constante mejor
         ancho = cv3.width / nDivs,
         imgData;
 
