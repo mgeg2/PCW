@@ -12,7 +12,43 @@
 </head>
 
 <body>
+    <header>
+        <a id="inicio" class="smooth-scroll"></a>
+        <a href="clase15.html"><img src="logo.jpg" alt="logotipo" class="img"></a>
+        <h1>Photo Puzzle</h1>
+        <p>Consigue formar el puzzle lo antes posible</p>
+    </header>
+    <br>
+
+    <div class="inicio">
+    <table>
+        <tr>
+            <th colspan="2">Puntuación</th>
+        </tr>
+        <tr>
+            <td>Jugadas realizadas: </td>
+            <td class="derecha">0</td>
+        </tr>
+        <tr>
+            <td>Piezas correctas: </td>
+            <td class="derecha">0</td>
+        </tr>
+        <tr>
+            <td>Tiempo empleado: </td>
+            <td class="derecha">0</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th>Juego</th>
+        </tr>
+    </table>
+    </div>
+
     <h1>Ejemplos de canvas</h1>
+
+    <div class="inicio">
     <section>
         <h2>Canvas 1</h2>
         <p>
@@ -31,7 +67,7 @@
             <label for="5x5">7x7</label>
             <input type="radio" id="10x10" name="5x5" value="10" onclick="divisiones(10)" disabled>
             <label for="10x10">10x10</label>
-           <button onclick="activaimagen()" disabled>activa imagen</button>
+            <button onclick="activaimagen()" disabled>Activa imagen</button>
         </footer>
     </section>
     
@@ -39,9 +75,9 @@
         <h2>Canvas 2</h2>
         <p>-</p>
         <p>-</p> 
-
         <canvas id="cv2"></canvas>
     </section>
+    </div>
 
     <canvas id="oculto"></canvas>
 
@@ -49,7 +85,12 @@
         prepararCanvas();
         prepararEventosCanvas();
         // si pongo aqui el divisiones() entonces se hacen las divisiones al cargar la pagina;
-    </script>   
+    </script>
+
+    <footer class="piepagina">
+        <a href="acerca.html">Sobre nosotros</a>
+        <p>&copy; Photo Puzzle, <time>2024</time></p>
+    </footer>   
 </body>
 
 </html>

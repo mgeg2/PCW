@@ -1,8 +1,66 @@
+@font-face  {
+  font-family: Montserrat;
+  src: url(fuentes/Montserrat.ttf) format('truetype');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* PONEMOS LA FUENTE */
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  color: #51558F;
+}
+
 * {
 	box-sizing: border-box;
 }
 
+/* HEADER */
+
+
+header {
+  background-color: #FFF4C5;
+}
+
+header > a > img {
+  width: 20%;
+  display: block;
+  margin: auto;
+}
+
+header > h1 {
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding: 0em .5em 0em .5em;
+  color: #8386B4;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+header > p {
+  color: #51558F;
+  text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  margin: auto;
+  padding: 1em;
+}
+
+/* PARA ACERCA.HTML */
+
+.informacion-autores, .informacion-adicional {
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: justify;
+}
+
 /* para que salga un canvas al lado del otro, porque no estan dentro de un contenedor */
+/*
 section { 
 	display: inline-block;
 	width: 400px;
@@ -11,11 +69,115 @@ section {
 	text-align: center;
 	vertical-align: top;
 }
+*/
+
+.inicio {
+  display: grid;
+  gap: 1%;
+  justify-content: center;
+  place-items:  center;
+  grid-template-columns: 1fr;
+}
+
+/* PIE DE PAGINA */
+
+.piepagina {
+  position: absolute;
+  background-color: #FFF4C5;
+  width: 100%;
+  padding-bottom: 15px;
+  display: flex;
+  margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.piepagina > a {
+  color: #51558F;
+  margin: 1em;
+  text-align: left;
+  &:hover {
+    color: #51558F;
+    font-weight: 1000;
+  }
+}
+
+.piepagina > p {
+  color: #51558F;
+  margin: 1em;
+  text-align: right;
+}
+/* FIN DE PIE DE PAGINA */
 
 canvas {
 	border: 1px solid #000;
+	border-color: #51558F;
 }
 
 #oculto {
 	display: none;
 }
+
+/* TABLAS */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+th {
+	text-align: center;
+	border-radius: 5px;
+	background-color: #51558F;
+	color: white;
+
+}
+
+td {
+   width: 25%;
+   vertical-align: top;
+   border-radius: 5px;
+   font-weight: 500;
+   background-color: #DBDCF6;
+   color: #51558F;
+}
+
+.derecha {
+	text-align: center;
+	background-color: #FFF4C5;
+}
+
+/* BOTONES */
+
+button {
+  font-family: "Montserrat";
+  border-radius: 10px;
+  margin-top: 5px;
+  color: #51558F;
+  padding: .5em .5em;
+  border: none;
+  background-color: #FFF4C5;
+  cursor: pointer;
+  &:hover {
+    color: #FFF4C5;
+    background-color: #51558F;
+    font-weight: 1000;
+  }
+
+}
+
+
+/* MEDIA QUERIES */
+
+@media all and (width>= 960px){
+  .inicio {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
+    gap: 2%;
+  }
+
+  header > a > img {
+    width: 10%;
+    display: block;
+    margin: auto;
+    padding: .5em;
+  }

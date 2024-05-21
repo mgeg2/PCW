@@ -88,7 +88,7 @@ function divisiones(div) {
 
     ctx.beginPath();
     ctx.lineWidth = 2;
-    ctx.strokeStyle = '#a00';
+    ctx.strokeStyle = '#51558F';
 
     for (let i = 1; i < nDivs; i++) {
         // divisiones verticales (con líneas)
