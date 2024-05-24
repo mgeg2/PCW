@@ -27,15 +27,15 @@
         </tr>
         <tr>
             <td>Jugadas realizadas: </td>
-            <td class="derecha">0</td>
+            <td class="derecha" id="jugadas">0</td>
         </tr>
         <tr>
             <td>Piezas correctas: </td>
-            <td class="derecha">0</td>
+            <td class="derecha" id="correctas">0</td>
         </tr>
         <tr>
             <td>Tiempo empleado: </td>
-            <td class="derecha">0</td>
+            <td class="derecha" id="tiempo">0</td>
         </tr>
     </table>
 
@@ -60,14 +60,18 @@
         
         <canvas id="cv1"></canvas> 
         <footer>
-            <button onclick="cargarImagen();">Cargar imagen</button>
-            <input type="radio" id="5x5"   name="5x5" value="5" onclick="divisiones(5)" disabled>
+            <button onclick="cargarImagen()" id="cargarImagen">Cargar imagen</button>
+            <input type="radio" id="5x5"   name="5x5" value="5" onclick="divisiones(5)">
             <label for="5x5">5x5</label>
-            <input type="radio" id="7x7" name="5x5" value="7" onclick="divisiones(7)" disabled>
+            <input type="radio" id="7x7" name="5x5" value="7" onclick="divisiones(7)">
             <label for="5x5">7x7</label>
-            <input type="radio" id="10x10" name="5x5" value="10" onclick="divisiones(10)" disabled>
+            <input type="radio" id="10x10" name="5x5" value="10" onclick="divisiones(10)" >
             <label for="10x10">10x10</label>
-            <button onclick="activaimagen()" disabled>Activa imagen</button>
+            <button onclick="randomizarPosiciones()" id="empezar">Empezar</button>
+            <input type="radio" id="imagen" name="imagen" onclick="mostrarImagenOriginal()">
+            <label for="imagen">imagen</label>
+            <input type="radio" id="puzle" name="imagen" onclick="mostrarPuzzle()">
+            <label for="puzle">puzle</label>
         </footer>
     </section>
     
