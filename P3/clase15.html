@@ -19,8 +19,8 @@
         <p>Consigue formar el puzzle lo antes posible</p>
     </header>
     <br>
-
     <div class="inicio">
+    <div class="puntos">
     <table>
         <tr>
             <th colspan="2">Puntuación</th>
@@ -38,49 +38,40 @@
             <td class="derecha" id="tiempo">0</td>
         </tr>
     </table>
+    </div>
 
+    <div class="juego">
     <table>
         <tr>
             <th>Juego</th>
         </tr>
     </table>
+
+    <div class="dificultad">
+        <input type="radio" id="5x5"   name="5x5" value="5" onclick="divisiones(5)">
+        <label for="5x5">5x5</label>
+        <input type="radio" id="7x7" name="5x5" value="7" onclick="divisiones(7)">
+        <label for="5x5">7x7</label>
+        <input type="radio" id="10x10" name="5x5" value="10" onclick="divisiones(10)" >
+        <label for="10x10">10x10</label>
     </div>
 
-    <h1>Ejemplos de canvas</h1>
-
-    <div class="inicio">
-    <section>
-        <h2>Canvas 1</h2>
-        <p>
-            Pos.: <span id='pos'></span>
-        </p>
-        <p>
-            Clic: <span id='clic'></span> 
-        </p>
-        
-        <canvas id="cv1"></canvas> 
-        <footer>
-            <button onclick="cargarImagen()" id="cargarImagen">Cargar imagen</button>
-            <input type="radio" id="5x5"   name="5x5" value="5" onclick="divisiones(5)">
-            <label for="5x5">5x5</label>
-            <input type="radio" id="7x7" name="5x5" value="7" onclick="divisiones(7)">
-            <label for="5x5">7x7</label>
-            <input type="radio" id="10x10" name="5x5" value="10" onclick="divisiones(10)" >
-            <label for="10x10">10x10</label>
-            <button onclick="randomizarPosiciones()" id="empezar">Empezar</button>
-            <input type="radio" id="imagen" name="imagen" onclick="mostrarImagenOriginal()">
-            <label for="imagen">imagen</label>
-            <input type="radio" id="puzle" name="imagen" onclick="mostrarPuzzle()">
-            <label for="puzle">puzle</label>
-        </footer>
-    </section>
+    <div class="dificultad">
+        <input type="radio" id="imagen" name="imagen" onclick="mostrarImagenOriginal()">
+        <label for="imagen">Imagen</label>
+        <input type="radio" id="puzle" name="imagen" onclick="mostrarPuzzle()">
+        <label for="puzle">Puzzle</label>
+    </div>
     
     <section>
-        <h2>Canvas 2</h2>
-        <p>-</p>
-        <p>-</p> 
-        <canvas id="cv2"></canvas>
+        <canvas id="cv1" onclick="cargarImagen()"></canvas> 
+        <footer>
+            <button onclick="cargarImagen()" id="cargarImagen">Cargar imagen</button>
+            <button onclick="randomizarPosiciones()" id="empezar">Empezar</button>
+            <button id="terminarPartida" onclick="terminarPartida()">Terminar</button>
+        </footer>
     </section>
+    </div>
     </div>
 
     <canvas id="oculto"></canvas>

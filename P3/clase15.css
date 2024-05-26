@@ -76,18 +76,20 @@ section {
   gap: 1%;
   justify-content: center;
   place-items:  center;
+  align-items: center;
+  align-content: center;
   grid-template-columns: 1fr;
 }
 
 /* PIE DE PAGINA */
 
 .piepagina {
-  position: absolute;
+  position: fixed;
+  bottom: 0;
   background-color: #FFF4C5;
   width: 100%;
   padding-bottom: 15px;
   display: flex;
-  margin-top: 100px;
   align-items: center;
   justify-content: center;
 }
@@ -147,6 +149,27 @@ td {
 	background-color: #FFF4C5;
 }
 
+.dificultad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: .2em;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: #DBDCF6;
+  color: #51558F;
+  padding: .3em;
+}
+
+section {
+  margin-top: .5em;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 /* BOTONES */
 
 button {
@@ -166,6 +189,19 @@ button {
 
 }
 
+/* MODAL */
+
+dialog{
+  border: none;
+  border-radius: 20px;
+  color: #51558F;
+}
+
+dialog::backdrop{
+  background-color: #0007;
+  backdrop-filter: blur(1px);
+}
+
 
 /* MEDIA QUERIES */
 
@@ -173,6 +209,15 @@ button {
   .inicio {
     grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
     gap: 2%;
+    align-items: flex-start;
+  }
+
+  .puntos {
+    order: 2; /* Cambiar el orden del div para que esté al lado derecho */
+  }
+
+  .juego {
+    order: 1; /* Cambiar el orden del div para que esté al lado izquierdo */
   }
 
   header > a > img {
