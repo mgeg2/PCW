@@ -19,6 +19,8 @@ function prepararCanvas() {
 
 function cargarImagen() {
     let inp = document.createElement('input');
+    let sectionCanvas = document.querySelector('section');
+    sectionCanvas.onclick = null;
 
     inp.setAttribute('type', 'file');
     inp.onchange = function(evt) {
@@ -80,7 +82,7 @@ function cargarImagen() {
 
         
             img.src = URL.createObjectURL(fichero); // asignamos a la imagen el archivo leído
-            sessionStorage.setItem('image',JSON.stringify(img.src));
+            sessionStorage.setItem('image', JSON.stringify(img.src));
         }
     };
     
@@ -397,6 +399,9 @@ function quitarBorde(cv, fila, col, ancho) {
 
 
 function randomizarPosiciones() {
+    let sectionCanvas = document.querySelector('section');
+    sectionCanvas.onclick = null;
+
     let nDivs = sessionStorage.getItem('divisions');
     if (!nDivs) return;
 
@@ -703,4 +708,102 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Se añade al documento
     document.body.appendChild(dialogo);
     dialogo.showModal();
+}
+
+
+function prepararDNDfoto() {
+    let cv = document.querySelector('#cv1');
+    let sectionCanvas = document.querySelector('section');
+
+    cv.width = ANCHO_CANVAS;
+    cv.height = cv.width;
+
+    cv.ondragover = function( evt ) {
+        evt.preventDefault();
+    }
+
+
+    cv.ondrop = function( evt ) {
+        evt.preventDefault();
+        if( evt.dataTransfer.getData('text/plain') == ''){
+            console.log("FICHERO EXTERNO");
+            let fichero = evt.dataTransfer.files[0];
+
+            mostrarImagenEnCanvas( fichero );
+        }
+        else {
+            let idx = evt.dataTransfer.getData('text/plain'), 
+                img = document.querySelector('[data-idx="' + idx + '"]'),
+                ctx = cv.getContext('2d');
+
+            // Pintar la imagen
+            let ancho, alto,
+                posX, posY;
+
+            if( img.naturalWidth > img.naturalHeight ) {
+                ancho = cv.width;
+                posX = 0;
+                alto = img.naturalHeight * (cv.width / img.naturalWidth);
+                posY = (cv.height - alto) / 2;
+            }
+            else {
+                alto = cv.height;
+                posY = 0;
+                ancho = img.naturalWidth * (cv.height / img.naturalHeight);
+                posX = (cv.width - ancho) / 2;
+            }
+            cv.width = cv.width;
+            ctx.drawImage( img, posX, posY, ancho, alto);
+        }
+    }
+
+    sectionCanvas.onclick = function(evt) {
+        cargarImagen();
+    }
+}
+
+function mostrarImagenEnCanvas( fichero ) {
+    let cv = document.querySelector('#cv1'),
+        ctx = cv.getContext('2d'),
+        img = new Image();
+
+    img.onload = function() {
+        let ancho, alto,
+            posX, posY;
+
+        if( img.naturalWidth > img.naturalHeight ) {
+            ancho = cv.width;
+            posX = 0;
+            alto = img.naturalHeight * (cv.width / img.naturalWidth);
+            posY = (cv.height - alto) / 2;
+        }
+        else {
+            alto = cv.height;
+            posY = 0;
+            ancho = img.naturalWidth * (cv.height / img.naturalHeight);
+            posX = (cv.width - ancho) / 2;
+        }
+        cv.width = cv.width;
+        ctx.drawImage( img, posX, posY, ancho, alto);
+
+        let cv3 = document.querySelector('#oculto'),
+            ctx3 = cv3.getContext('2d');
+
+        ctx3.clearRect(0, 0, cv3.width, cv3.height);
+        ctx3.drawImage(cv, 0, 0); // no especificamos alto y ancho porque es igual
+
+        // Redibujar las divisiones si es necesario
+        let currentDivisions = sessionStorage.getItem('divisions');
+        if (currentDivisions) {
+            divisiones(currentDivisions);
+        }
+
+
+        let empezar = document.getElementById("empezar");
+        empezar.disabled = false;
+    }
+
+    img.src = URL.createObjectURL( fichero );
+    sessionStorage.setItem('image', JSON.stringify(img.src));
+
 }
