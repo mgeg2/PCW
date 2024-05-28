@@ -84,7 +84,7 @@ section {
 /* PIE DE PAGINA */
 
 .piepagina {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   background-color: #FFF4C5;
   width: 100%;
@@ -205,7 +205,7 @@ dialog::backdrop{
 
 /* MEDIA QUERIES */
 
-@media all and (width>= 960px){
+@media all and (width>= 730px){
   .inicio {
     grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más grandes */
     gap: 2%;

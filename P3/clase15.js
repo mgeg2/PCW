@@ -1,7 +1,11 @@
 const ANCHO_CANVAS = 360;
 
 function inicio() {
-    mostrarMensajeModal('Bienvenid@ a Photo Puzzle', 'Elige una imagen e intenta montar el puzzle. Tienes 3 niveles de dificultad para elegir.', 'ok2');
+    let puzzleState = sessionStorage.getItem('puzzleState');
+    if(!puzzleState){
+         mostrarMensajeModal('Bienvenid@ a Photo Puzzle', 'Elige una imagen e intenta montar el puzzle. Tienes 3 niveles de dificultad para elegir.', 'ok2');
+    }
+   
 }
 
 function prepararCanvas() {
@@ -17,6 +21,7 @@ function prepararCanvas() {
     cv3.height = cv.height;
 }
 
+
 function cargarImagen() {
     let inp = document.createElement('input');
     let sectionCanvas = document.querySelector('section');
@@ -26,69 +31,77 @@ function cargarImagen() {
     inp.onchange = function(evt) {
         let fichero = inp.files[0];
 
-        if (fichero) { // comprobar que el fichero no está vacío, si está vacío aparece como undefined
-            let img = document.createElement('img');
-            img.onload = function() {
-                let cv = document.querySelector('#cv1'),
-                    ctx = cv.getContext('2d'),
-                    ancho, alto,
-                    posX, posY,
-                    factor;
+        if (fichero) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                let base64String = event.target.result;
+
+                // Guardar la cadena Base64 en sessionStorage
+                sessionStorage.setItem('image', base64String); // No es necesario JSON.stringify()
+
+                let img = document.createElement('img');
+                img.onload = function() {
+                    let cv = document.querySelector('#cv1'),
+                        ctx = cv.getContext('2d'),
+                        ancho, alto,
+                        posX, posY,
+                        factor;
+                    
                     document.getElementById('correctas').textContent = 0;
                     document.getElementById('jugadas').textContent = 0;
+                    sessionStorage.setItem('correctas', 0);
+                    sessionStorage.setItem('jugadas', 0);
                     document.getElementById('tiempo').textContent = '0s';
                     sessionStorage.removeItem('divisions');
                     let radios = document.querySelectorAll('input[name="5x5"]');
                     radios.forEach(radio => {
                         radio.checked = false;
                     });
-                
-                // para comprobar si img es más ancha que alta
-                if (img.naturalWidth > img.naturalHeight) { // si imagen es más ancha que alta
-                    posX = 0;
-                    ancho = cv.width;
-                    factor = cv.width / img.naturalWidth;
-                    alto = img.naturalHeight * factor; // me da alto imagen proporcional
-                    posY = (cv.height - alto) / 2;
-                } else { // si imagen es más alta que ancha
-                    posY = 0;
-                    alto = cv.height;
-                    factor = cv.height / img.naturalHeight;
-                    ancho = img.naturalWidth * factor; // me da alto imagen proporcional
-                    posX = (cv.width - ancho) / 2;
-                }
 
-                // renderizamos el canvas de nuevo para borrar imagen anterior
-                ctx.clearRect(0, 0, cv.width, cv.height);
-                ctx.drawImage(img, posX, posY, ancho, alto); // aquí hay que dibujarla proporcional para que no se estire comprobar ancho y alto de la foto
-                
-                let cv3 = document.querySelector('#oculto'),
-                    ctx3 = cv3.getContext('2d');
+                    if (img.naturalWidth > img.naturalHeight) {
+                        posX = 0;
+                        ancho = cv.width;
+                        factor = cv.width / img.naturalWidth;
+                        alto = img.naturalHeight * factor;
+                        posY = (cv.height - alto) / 2;
+                    } else {
+                        posY = 0;
+                        alto = cv.height;
+                        factor = cv.height / img.naturalHeight;
+                        ancho = img.naturalWidth * factor;
+                        posX = (cv.width - ancho) / 2;
+                    }
 
-                ctx3.clearRect(0, 0, cv3.width, cv3.height);
-                ctx3.drawImage(cv, 0, 0); // no especificamos alto y ancho porque es igual
+                    ctx.clearRect(0, 0, cv.width, cv.height);
+                    ctx.drawImage(img, posX, posY, ancho, alto);
 
-                // Redibujar las divisiones si es necesario
-                let currentDivisions = sessionStorage.getItem('divisions');
-                if (currentDivisions) {
-                    divisiones(currentDivisions);
-                }
+                    let cv3 = document.querySelector('#oculto'),
+                        ctx3 = cv3.getContext('2d');
 
+                    ctx3.clearRect(0, 0, cv3.width, cv3.height);
+                    ctx3.drawImage(cv, 0, 0);
 
-                let empezar = document.getElementById("empezar");
-                empezar.disabled = false;
-                
-            }
+                    let currentDivisions = sessionStorage.getItem('divisions');
+                    if (currentDivisions) {
+                        divisiones(currentDivisions);
+                    }
 
-        
-            img.src = URL.createObjectURL(fichero); // asignamos a la imagen el archivo leído
-            sessionStorage.setItem('image', JSON.stringify(img.src));
+                    let empezar = document.getElementById("empezar");
+                    empezar.disabled = false;
+                };
+
+                img.src = base64String;
+            };
+
+            reader.readAsDataURL(fichero); // Utilizamos readAsDataURL para obtener una cadena Base64
         }
     };
-    
 
     inp.click();
 }
+
+
+
 
 function divisiones(div) {
     if (div > 0) {
@@ -223,6 +236,7 @@ function prepararEventosCanvas() {
                 intercambiarPiezas(sel, seleccionada);
                 let jugadas= document.getElementById('jugadas').textContent;
                 jugadas++;
+                sessionStorage.setItem('jugadas', jugadas);
                 document.getElementById('jugadas').textContent = jugadas;
             }
         }
@@ -288,6 +302,7 @@ function intercambiarPiezas(sel, seleccionada) {
         // Incrementar el contador si la pieza está en la posición correcta
         if (filaActual === filaOriginal && colActual === colOriginal) {
             correctas++;
+            sessionStorage.setItem('correctas', correctas);
             agregarBorde2(cv, filaActual, colActual, ancho);
         }
     });
@@ -299,9 +314,6 @@ function intercambiarPiezas(sel, seleccionada) {
         movs = document.getElementById('jugadas').textContent;
         movims = parseInt(movs);
         movims += 1;
-        console.log(movs);
-        sessionStorage.clear();
-        mostrarMensajeModal('Fin de la partida', `Has completado el puzzle en ${movims} movimientos.`, 'ok');
         let empezar=document.getElementById("empezar");
         let cargar=document.getElementById("cargarImagen");
         let radios = document.querySelectorAll('input[name="5x5"]');
@@ -310,6 +322,8 @@ function intercambiarPiezas(sel, seleccionada) {
         });
         empezar.disabled=false;
         cargar.disabled=false;
+        sessionStorage.clear();
+        mostrarMensajeModal('Fin de la partida', `Has completado el puzzle en ${movims} movimientos.`, 'ok');
                
     }
 
@@ -476,7 +490,7 @@ function randomizarPosiciones() {
 function mostrarImagenOriginal() {
     let cv = document.querySelector('#cv1'),
         ctx = cv.getContext('2d'),
-        imgSrc = JSON.parse( sessionStorage.getItem('image') );
+        imgSrc = sessionStorage.getItem('image');
 
     if (imgSrc) {
         let img = new Image();
@@ -560,10 +574,18 @@ function mostrarPuzzle() {
 
 function iniciarCronometro() {
     let tiempoDisplay = document.getElementById('tiempo');
-    let startTime = Date.now();
+    let startTime = sessionStorage.getItem('startTime');
+
+    if (!startTime) {
+        startTime = Date.now();
+        sessionStorage.setItem('startTime', startTime);
+    } else {
+        startTime = parseInt(startTime, 10);
+    }
 
     let intervalId = setInterval(() => {
         let elapsed = Math.floor((Date.now() - startTime) / 1000);
+        
         let minutes = Math.floor(elapsed / 60);
         let seconds = elapsed % 60;
         
@@ -576,6 +598,7 @@ function iniciarCronometro() {
 
     sessionStorage.setItem('intervalId', intervalId);
 }
+
 
 function pararCronometro() {
     let intervalId = sessionStorage.getItem('intervalId');
@@ -593,7 +616,7 @@ function terminarPartida() {
         clearInterval(intervalId);
         sessionStorage.removeItem('intervalId');
     }
-    tiempoDisplay.textContent = '0';
+    tiempoDisplay.textContent = '0s';
 
     // Bloquear la interacción con el puzzle
     let cv = document.querySelector('#cv1');
@@ -633,26 +656,78 @@ document.addEventListener('DOMContentLoaded', (event) => {
     prepararEventosCanvas();
 
     // Desactivar estos botones inicialmente
-    let empezar = document.getElementById("empezar");
-    let terminar = document.getElementById("terminarPartida");
-    let puzzle = document.getElementById("puzle");
-    let imagen = document.getElementById("imagen");
-    empezar.disabled = true;
-    terminar.disabled = true;
-    puzzle.disabled = true;
-    imagen.disabled = true;
+    if(!sessionStorage.getItem('puzzleState')){
+        let empezar = document.getElementById("empezar");
+        let terminar = document.getElementById("terminarPartida");
+        let puzzle = document.getElementById("puzle");
+        let imagen = document.getElementById("imagen");
+        empezar.disabled = true;
+        terminar.disabled = true;
+        puzzle.disabled = true;
+        imagen.disabled = true;
+    }
 
     // Limpiar las divisiones al recargar la página
-    limpiarDivisiones();
+    //limpiarDivisiones();
 
     // Si se carga una imagen y hay divisiones en sessionStorage, redibujar las divisiones
+    /*
     let currentDivisions = sessionStorage.getItem('divisions');
     if (currentDivisions) {
         divisiones(currentDivisions);
     }
+    */
+    let base64String = sessionStorage.getItem('image'),
+        cv3 = document.querySelector('#oculto'),
+        ctx3 = cv3.getContext('2d'),
+        posX, posY, ancho, alto, factor;
+
+    if (base64String) {
+        let img = new Image();
+        img.onload = function() {
+            if (img.naturalWidth > img.naturalHeight) {
+                        posX = 0;
+                        ancho = cv3.width;
+                        factor = cv3.width / img.naturalWidth;
+                        alto = img.naturalHeight * factor;
+                        posY = (cv3.height - alto) / 2;
+                    } else {
+                        posY = 0;
+                        alto = cv3.height;
+                        factor = cv3.height / img.naturalHeight;
+                        ancho = img.naturalWidth * factor;
+                        posX = (cv3.width - ancho) / 2;
+            }
+            ctx3.clearRect(0, 0, cv3.width, cv3.height);
+            ctx3.drawImage(img, posX, posY, ancho, alto);
+        };
+        img.src = base64String;
+    }
     if (sessionStorage.getItem('puzzleState')) {
+        let jug = parseInt(sessionStorage.getItem('jugadas')),
+            corr = parseInt(sessionStorage.getItem('correctas')),
+            radios = document.querySelectorAll('input[name="5x5"]');
+
+        let empezar = document.getElementById("empezar");
+        let cargar = document.getElementById("cargarImagen");
+
+        empezar.disabled = true;
+        cargar.disabled = true;
+
+        radios.forEach(radio => {
+            radio.disabled = true;
+        });
+
+        if (sessionStorage.getItem('startTime')) {
+            iniciarCronometro();
+        }
+
+        document.getElementById('correctas').textContent = corr;
+        document.getElementById('jugadas').textContent = jug;
+
         mostrarPuzzle();
     }
+
 });
 
 
@@ -757,40 +832,63 @@ function prepararDNDfoto() {
         }
     }
 
-    sectionCanvas.onclick = function(evt) {
-        cargarImagen();
+
+    let puzzleState = sessionStorage.getItem('puzzleState');
+    if(!puzzleState){
+        sectionCanvas.onclick = function(evt) {
+            cargarImagen();
+        }
     }
 }
 
-function mostrarImagenEnCanvas( fichero ) {
+function mostrarImagenEnCanvas(fichero) {
     let cv = document.querySelector('#cv1'),
         ctx = cv.getContext('2d'),
         img = new Image();
 
-    img.onload = function() {
-        let ancho, alto,
-            posX, posY;
+    let reader = new FileReader();
+    
+    reader.onloadend = function() {
+        // Convertir la imagen a una cadena Base64
+        let base64String = reader.result;
+        // Guardar la cadena Base64 en sessionStorage
+        sessionStorage.setItem('image', base64String);
 
-        if( img.naturalWidth > img.naturalHeight ) {
+        img.src = base64String;
+    };
+
+    reader.readAsDataURL(fichero);
+
+    img.onload = function() {
+        let ancho, alto, posX, posY;
+
+        document.getElementById('correctas').textContent = 0;
+        document.getElementById('jugadas').textContent = 0;
+        sessionStorage.setItem('correctas', 0);
+        sessionStorage.setItem('jugadas', 0);
+        document.getElementById('tiempo').textContent = '0s';
+        sessionStorage.removeItem('divisions');
+
+        if (img.naturalWidth > img.naturalHeight) {
             ancho = cv.width;
             posX = 0;
             alto = img.naturalHeight * (cv.width / img.naturalWidth);
             posY = (cv.height - alto) / 2;
-        }
-        else {
+        } else {
             alto = cv.height;
             posY = 0;
             ancho = img.naturalWidth * (cv.height / img.naturalHeight);
             posX = (cv.width - ancho) / 2;
         }
-        cv.width = cv.width;
-        ctx.drawImage( img, posX, posY, ancho, alto);
+
+        cv.width = cv.width; // Reiniciar el canvas
+        ctx.drawImage(img, posX, posY, ancho, alto);
 
         let cv3 = document.querySelector('#oculto'),
             ctx3 = cv3.getContext('2d');
 
         ctx3.clearRect(0, 0, cv3.width, cv3.height);
-        ctx3.drawImage(cv, 0, 0); // no especificamos alto y ancho porque es igual
+        ctx3.drawImage(cv, 0, 0); // no es necesario especificar ancho y alto
 
         // Redibujar las divisiones si es necesario
         let currentDivisions = sessionStorage.getItem('divisions');
@@ -798,12 +896,12 @@ function mostrarImagenEnCanvas( fichero ) {
             divisiones(currentDivisions);
         }
 
-
         let empezar = document.getElementById("empezar");
         empezar.disabled = false;
-    }
-
-    img.src = URL.createObjectURL( fichero );
-    sessionStorage.setItem('image', JSON.stringify(img.src));
-
+    };
 }
+
+
+window.addEventListener('load', (event) => {
+    mostrarPuzzle();
+});
