@@ -71,6 +71,11 @@ section {
 }
 */
 
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
 .inicio {
   display: grid;
   gap: 1%;
@@ -221,8 +226,8 @@ dialog::backdrop{
   }
 
   header > a > img {
-    width: 10%;
+    width: 7%;
     display: block;
     margin: auto;
-    padding: .5em;
+    padding: .1em;
   }
